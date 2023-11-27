@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.InputMismatchException;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import compMethodologyAssignment4.Gambler;
@@ -14,7 +15,7 @@ class betOnANumberTesting {
 
 	Gambler gambler; 
 	
-	@BeforeAll
+	@BeforeEach
 	void initializeGambler() {
 		MockObjectValueGenerator valueGenerator = new MockObjectValueGenerator();
 		valueGenerator.setRandomDouble(.37);			/*Set up "random" value generator to always generate .37 as the random factor */

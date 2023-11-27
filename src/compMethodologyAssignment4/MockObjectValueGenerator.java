@@ -25,11 +25,10 @@ public class MockObjectValueGenerator implements IRandomValueGenerator{
 	 * get range,get random amount in the range, then add to min.
 	 */
 	@Override
-	public double getRandomInt(int min, int max)
-	{
-		
-		int newRandomInt = (int)
-				(randomDouble * (max - min)) + min; 
+	public int getRandomInt(int min, int max)
+	{	
+		int newRandomInt = 
+				(int)Math.round((randomDouble * (max - min)) + min); 
 		
 		return newRandomInt;
 	}

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.InputMismatchException;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import compMethodologyAssignment4.Gambler;
@@ -14,10 +15,10 @@ class betOnAProbabilityTesting {
 
 	Gambler gambler; 
 	
-	@BeforeAll
+	@BeforeEach
 	void initializeGambler() {
 		MockObjectValueGenerator valueGenerator = new MockObjectValueGenerator();
-		valueGenerator.setRandomDouble(.37);			/*Set up "random" value generator to always generate .37 as the random factor */
+		valueGenerator.setRandomDouble(.30);			/*Set up "random" value generator to always generate .37 as the random factor */
 		gambler = new Gambler(valueGenerator, -20); 	/* Set with the new valueGenerator and minimum balance is negative 20 */
 	}
 	
@@ -36,14 +37,19 @@ class betOnAProbabilityTesting {
 	}
 	
 	@Test 
-	void gambleOfFifteenWithProbabilityThirtyAndRandomGeneratorTwentyNineReturnsThirtyFiveAndChangesBalance(){
+	void gambleOfFifteenWithProbabilitythirtyOneAndRandomGeneratorThirtyReturnsThirtyFiveAndChangesBalance(){
 		assertEquals(0, gambler.getCurrentBalance());
-		assertEquals(35, gambler.betOnProbability(15, .30));
-		assertEquals(35, gambler.getCurrentBalance());
+		assertEquals(33, Math.round(gambler.betOnProbability(15, .31)));
+		assertEquals(33, Math.round(gambler.getCurrentBalance()));
 	}
 	
 	@Test 
 	void negativeFifteenPercentProbabilityAmountThrowsInputMismatchException(){
 		InputMismatchException e = assertThrows(InputMismatchException.class, () -> gambler.betOnProbability(5, -.15));
+	}
+	
+	@Test 
+	void hundredAndOnePercentProbabilityAmountThrowsInputMismatchException(){
+		InputMismatchException e = assertThrows(InputMismatchException.class, () -> gambler.betOnProbability(5, 1.01));
 	}
 }

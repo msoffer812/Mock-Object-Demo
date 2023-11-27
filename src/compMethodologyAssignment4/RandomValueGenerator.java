@@ -30,18 +30,19 @@ public class RandomValueGenerator implements IRandomValueGenerator
 	 * get range,get random amount in the range, then add to min.
 	 */
 	@Override
-	public double getRandomInt(int min, int max)
+	public int getRandomInt(int min, int max)
 	{
 		double randomDouble = getRandomDouble();
 		
-		int newRandomInt = (int)
-				(randomDouble * (max - min)) + min; 
+		int newRandomInt = 
+				(int)Math.round((randomDouble * (max - min)) + min); 
 		
 		return newRandomInt;
 	}
 	
 	/**
 	 * @return boolean based on random probability happening
+	 * < because inclusive of zero but not 1
 	 */
 	@Override
 	public boolean getBooleanProbability(double probability)

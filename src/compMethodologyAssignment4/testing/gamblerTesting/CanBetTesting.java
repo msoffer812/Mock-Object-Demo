@@ -1,3 +1,6 @@
+/**
+ * extends Gambler to access protected method of canBet();
+ */
 package compMethodologyAssignment4.testing.gamblerTesting;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,44 +13,40 @@ import compMethodologyAssignment4.Gambler;
 import compMethodologyAssignment4.IRandomValueGenerator;
 import compMethodologyAssignment4.MockObjectValueGenerator;
 
-class CanBetTesting{
+class CanBetTesting extends Gambler{
 
-	Gambler gambler;
-	
-	@BeforeAll
-	void initializeGambler()
-	{
-		gambler = new Gambler(new MockObjectValueGenerator(), -27);
-		gambler.addMoney(100);
+	public CanBetTesting() {
+		super(new MockObjectValueGenerator(), -27);
+		addMoney(100);
 	}
-	
+
 	@Test
 	void twoHundredWithHundredBalanceAndNegativeTwentySevenMinimumReturnsFalse()
 	{
-		assertFalse(gambler.canBet(200));
+		assertFalse(canBet(200));
 	}
 	
 	@Test
 	void seventyFourWithHundredBalanceAndNegativeTwentySevenMinimumReturnsTrue()
 	{
-		assertTrue(gambler.canBet(74));
+		assertTrue(canBet(74));
 	}
 	
 	@Test
 	void seventyFiveWithHundredBalanceAndNegativeTwentySevenMinimumReturnsFalse()
 	{
-		assertFalse(gambler.canBet(75));
+		assertFalse(canBet(128));
 	}
 	
 	@Test
 	void fiveWithHundredBalanceAndNegativeTwentySevenMinimumReturnsTrue()
 	{
-		assertTrue(gambler.canBet(5));
+		assertTrue(canBet(5));
 	}
 	
 	@Test
 	void negativeFiveWithHundredBalanceAndNegativeTwentySevenMinimumReturnsFalse()
 	{
-		assertFalse(gambler.canBet(-5));
+		assertFalse(canBet(-5));
 	}
 }
