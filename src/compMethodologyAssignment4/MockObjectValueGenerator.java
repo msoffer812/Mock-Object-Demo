@@ -15,7 +15,7 @@ public class MockObjectValueGenerator implements IRandomValueGenerator{
 	 * 
 	 * set "random" double, used for unit testing
 	 */
-	private void setRandomDouble(double randomDouble)
+	public void setRandomDouble(double randomDouble)
 	{
 		this.randomDouble = randomDouble;
 	}
